@@ -1,1 +1,100 @@
-/* You can add global styles to this file, and also import other style files */
+// Design tokens
+$ease:cubic-bezier(.2,.8,.2,1);
+$bp-mobile:900px;
+
+:root{--bg:#0a0912;--ink:#f1eefb;--mut:#a39fb8;--dim:#6d6985;--acc:#a78bfa;--acc2:#8b5cf6;--line:rgba(255,255,255,.08);--card:rgba(20,17,36,.72);--side:240px}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font:400 16px/1.6 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.mono{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.06em}
+.dim{color:var(--dim)}.acc{color:var(--acc)}.sans{font-family:Inter,sans-serif;letter-spacing:0}
+.tiny{font-size:11px}.small{font-size:14px}
+
+/* top bar */
+.top{position:fixed;top:0;left:0;right:0;height:68px;z-index:20;display:flex;justify-content:space-between;align-items:center;padding:0 40px;
+  background:rgba(10,9,18,.55);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.logo{font-size:18px;display:flex;gap:10px;align-items:center}.logo em{font-style:normal;color:var(--acc);font-size:13px}
+.spark{color:var(--acc);display:inline-block;transition:transform .6s}.logo:hover .spark{transform:rotate(180deg) scale(1.2)}
+.top nav{display:flex;gap:24px;align-items:center;color:var(--mut);font-size:14px}
+.top nav a:hover{color:var(--ink)}
+.pill{display:flex;gap:8px;align-items:center;padding:8px 18px;border-radius:99px;background:rgba(139,92,246,.18);border:1px solid rgba(139,92,246,.35);color:var(--acc);font-size:12px}
+.pill i{width:6px;height:6px;border-radius:50%;background:var(--acc);animation:pulse 2s infinite}
+@keyframes pulse{50%{box-shadow:0 0 0 6px rgba(167,139,250,0);opacity:.5}0%{box-shadow:0 0 0 0 rgba(167,139,250,.6)}}
+
+/* fixed side nav */
+.side{position:fixed;top:68px;bottom:0;left:0;width:var(--side);z-index:15;padding:112px 0 0 52px;border-right:1px solid var(--line);background:rgba(10,9,18,.35)}
+.side p{margin-bottom:36px;font-size:10px}
+.side ul{list-style:none;padding:0;position:relative}
+.side ul::before{content:"";position:absolute;left:3px;top:8px;bottom:8px;width:1px;background:var(--line)}
+.side li{margin-bottom:20px}
+.side a{display:flex;align-items:center;gap:20px;color:var(--dim);font-size:13px;transition:color .3s,transform .3s}
+.side a:hover{color:var(--ink);transform:translateX(4px)}
+.dot{width:7px;height:7px;border-radius:50%;background:#0a0912;border:1px solid var(--dim);z-index:1;transition:all .35s}
+.side li.active a{color:var(--ink);font-weight:500}
+.side li.active .dot{background:var(--acc);border-color:var(--acc);box-shadow:0 0 14px var(--acc);transform:scale(1.5)}
+.side small{color:var(--acc);font-size:10px;animation:fade .4s}
+@keyframes fade{from{opacity:0;transform:translateX(-6px)}}
+
+/* layout */
+main{position:relative;z-index:5;margin-left:var(--side);padding:0 60px 0 48px}
+.sec{max-width:1180px;padding:140px 0 60px}
+.hero{min-height:100vh;padding-top:190px}
+.eyebrow{display:flex;align-items:center;gap:14px;font:400 11px 'JetBrains Mono',monospace;letter-spacing:.1em;color:var(--mut);margin-bottom:28px}
+.eyebrow b{color:var(--acc);font-weight:400}.eyebrow u{width:34px;height:1px;background:var(--acc);transition:width .5s}
+.sec:hover .eyebrow u{width:56px}
+h1{font-size:clamp(44px,6vw,76px);line-height:1.04;font-weight:600;letter-spacing:-.025em;margin-bottom:40px}
+h2{font-size:clamp(30px,3.6vw,44px);font-weight:300;line-height:1.2;letter-spacing:-.01em;margin-bottom:34px}
+h1 .acc{background:linear-gradient(100deg,#c4b5fd,#8b5cf6 70%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.lead{max-width:420px;color:var(--mut);font-size:17px;margin-bottom:36px}
+.body{color:var(--mut);font-size:15px;margin-bottom:22px;max-width:980px}.body.sm{font-size:14px}
+
+.btns{display:flex;gap:14px}
+.btn{display:inline-flex;align-items:center;gap:14px;padding:14px 24px;border-radius:8px;font-size:14px;font-weight:500;transition:transform .3s,box-shadow .3s,background .3s}
+.btn.primary{background:var(--acc2);color:#fff}.btn.ghost{border:1px solid var(--line);background:rgba(255,255,255,.02)}
+.btn:hover{transform:translateY(-3px)}.btn.primary:hover{box-shadow:0 10px 32px -6px rgba(139,92,246,.75)}
+.btn.ghost:hover{border-color:var(--acc);background:rgba(139,92,246,.1)}
+.arr{display:inline-block;transition:transform .3s}
+a:hover>.arr,.proj:hover h3 .arr{transform:translate(3px,-3px)}.btn:hover .arr.down{transform:translateY(4px)}
+.strip{margin-top:140px;padding-top:26px;border-top:1px solid var(--line);display:flex;justify-content:space-between}
+
+/* cards with cursor-follow glow */
+.glow{position:relative;overflow:hidden}
+.glow::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .35s;
+  background:radial-gradient(320px circle at var(--mx,50%) var(--my,50%),rgba(167,139,250,.18),transparent 70%)}
+.glow:hover::after{opacity:1}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:22px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:26px;backdrop-filter:blur(8px);transition:transform .4s $ease,border-color .3s,box-shadow .4s}
+.card:hover{transform:translateY(-6px);border-color:rgba(167,139,250,.45);box-shadow:0 24px 50px -24px rgba(139,92,246,.55)}
+.card h4{font-size:14px;font-weight:500;padding-bottom:18px;margin-bottom:12px;border-bottom:1px solid var(--line);display:flex;gap:10px}
+.tool{display:flex;gap:16px;align-items:center;padding:10px 0;transition:transform .3s}
+.tool:hover{transform:translateX(6px)}
+.badge{width:36px;height:36px;border-radius:8px;display:grid;place-items:center;background:rgba(139,92,246,.12);color:var(--acc);transition:all .3s}
+.tool:hover .badge{background:var(--acc2);color:#fff;transform:rotate(-8deg) scale(1.1)}
+.tool strong{display:block;font-weight:400;font-size:14px;line-height:1.3}.tool small{color:var(--dim);font-size:12px}
+
+/* projects */
+.grid2{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:48px 26px;max-width:880px}
+.thumb{height:210px;border-radius:14px;border:1px solid var(--line);margin-bottom:18px;display:flex;align-items:flex-end;padding:22px;transition:transform .5s $ease,box-shadow .5s}
+.proj:hover .thumb{transform:translateY(-6px) scale(1.02);box-shadow:0 30px 60px -28px rgba(139,92,246,.7)}
+.mock{transition:transform .5s}.proj:hover .mock{transform:scale(1.06) translateX(4px)}
+.mock small{display:block;opacity:.6;font-size:13px}.mock b{font-size:26px;font-weight:400;line-height:1.15;display:block;max-width:230px}
+.proj h3{font-weight:400;font-size:22px;display:flex;justify-content:space-between;margin:2px 0 8px}.proj h3 .arr{color:var(--acc)}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 10px}
+.chips span{padding:5px 10px;border:1px solid var(--line);border-radius:5px;color:var(--mut);background:rgba(255,255,255,.03);transition:all .25s}
+.chips span:hover{color:#fff;border-color:var(--acc);transform:translateY(-2px)}
+.links{display:flex;gap:22px;margin-top:14px;font-size:13px;color:var(--acc)}
+.links a{background:linear-gradient(currentColor,currentColor) 0 100%/0 1px no-repeat;transition:background-size .3s}.links a:hover{background-size:100% 1px}
+
+/* contact */
+.cta{padding:56px 48px;border:1px solid var(--line);border-radius:18px;background:linear-gradient(135deg,rgba(40,28,78,.7),rgba(16,13,30,.8));backdrop-filter:blur(8px)}
+.cta h2{font-size:clamp(32px,4vw,52px);font-weight:400}.cta h2 .acc{font-weight:300}
+.mail{display:flex;justify-content:space-between;align-items:center;margin-top:34px;flex-wrap:wrap;gap:16px}
+.email{font-size:22px;transition:color .3s,letter-spacing .4s}.email:hover{color:var(--acc);letter-spacing:.01em}
+.soc{display:flex;gap:28px;font-size:13px;color:var(--mut)}.soc a:hover{color:var(--ink)}
+footer{display:flex;justify-content:space-between;padding:36px 0;margin-top:50px;border-top:1px solid var(--line);font-size:11px}
+footer a:hover{color:var(--acc)}
+
+@media (max-width:#{$bp-mobile}){.side{display:none}main{margin-left:0;padding:0 24px}.top{padding:0 20px}.strip{flex-direction:column;gap:8px}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+a:focus-visible,.btn:focus-visible{outline:2px solid var(--acc);outline-offset:3px}
