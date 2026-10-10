@@ -6,15 +6,13 @@ import { Projects } from './components/projects/projects';
 import { Side } from './components/side/side';
 import { Sky } from './components/sky/sky';
 import { Tech } from './components/tech/tech';
-import { Top } from './components/top/top';
 
 @Component({
   selector: 'app-root',
-  imports: [Sky, Top, Side, Hello, About, Tech, Projects, Contact],
+  imports: [Sky, Side, Hello, About, Tech, Projects, Contact],
   styleUrl: './app.scss',
   template: `
     <app-sky />
-    <app-top />
     <app-side />
 
     <main>
