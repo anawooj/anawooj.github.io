@@ -73,3 +73,25 @@ h1 {
     }
   }
 }
+
+.typed {
+      display: block;
+      height: 1.1em;
+      white-space: nowrap;
+    }
+
+  .caret {
+        display: inline-block;
+        width: 0.06em;
+        height: 0.85em;
+        margin-left: 0.06em;
+        vertical-align: -0.05em;
+        background: var(--acc);
+        animation: blink 1s steps(1) infinite;
+      }
+
+      @keyframes blink {
+        50% {
+          opacity: 0;
+        }
+      }
