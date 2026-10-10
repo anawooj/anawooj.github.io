@@ -1,0 +1,75 @@
+@use '../../../styles/tokens' as *;
+
+.side {
+  position: fixed;
+  top: 68px;
+  bottom: 0;
+  left: 0;
+  z-index: 15;
+  width: var(--side);
+  padding: 112px 0 0 52px;
+  background: rgba(10, 9, 18, 0.35);
+  border-right: 1px solid var(--line);
+
+  @media (max-width: #{$bp-mobile}) {
+    display: none;
+  }
+
+  ul {
+    position: relative;
+    padding: 0;
+    list-style: none;
+
+    // vertical guide line behind the dots
+    &::before {
+      content: '';
+      position: absolute;
+      top: 8px;
+      bottom: 8px;
+      left: 2.5px;
+      width: 1px;
+      background: var(--line);
+    }
+  }
+
+  li {
+    margin-bottom: 60px;
+
+    &.active {
+      a {
+        font-weight: 500;
+        color: var(--ink);
+      }
+
+      .dot {
+        background: var(--acc);
+        border-color: var(--acc);
+        box-shadow: 0 0 14px var(--acc);
+        transform: scale(1.5);
+      }
+    }
+  }
+
+  a {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-size: 13px;
+    color: var(--dim);
+    transition: color 0.3s;
+
+    &:hover {
+      color: var(--ink);
+    }
+  }
+}
+
+.dot {
+  z-index: 1;
+  width: 7px;
+  height: 7px;
+  background: #0a0912;
+  border: 1px solid var(--dim);
+  border-radius: 50%;
+  transition: all 0.35s;
+}

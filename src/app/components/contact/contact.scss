@@ -1,0 +1,61 @@
+.cta {
+  padding: 56px 48px;
+  background: linear-gradient(135deg, rgba(40, 28, 78, 0.7), rgba(16, 13, 30, 0.8));
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  backdrop-filter: blur(8px);
+
+  h2 {
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 400;
+
+    .acc {
+      font-weight: 300;
+    }
+  }
+}
+
+.mail {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 34px;
+}
+
+.email {
+  font-size: 22px;
+  transition:
+    color 0.3s,
+    letter-spacing 0.4s;
+
+  &:hover {
+    color: var(--acc);
+    letter-spacing: 0.01em;
+  }
+}
+
+.soc {
+  display: flex;
+  gap: 28px;
+  font-size: 13px;
+  color: var(--mut);
+
+  a:hover {
+    color: var(--ink);
+  }
+}
+
+footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 50px;
+  padding: 36px 0;
+  font-size: 11px;
+  border-top: 1px solid var(--line);
+
+  a:hover {
+    color: var(--acc);
+  }
+}

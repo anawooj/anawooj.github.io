@@ -1,0 +1,13 @@
+@use '../styles/tokens' as *;
+
+main {
+  position: relative;
+  z-index: 5;
+  margin-left: var(--side);
+  padding: 0 60px 0 48px;
+
+  @media (max-width: #{$bp-mobile}) {
+    margin-left: 0;
+    padding: 0 24px;
+  }
+}
