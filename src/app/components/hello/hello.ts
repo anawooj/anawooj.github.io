@@ -26,11 +26,6 @@ import { ScrollTo } from '../../shared/scroll-to';
           Let's talk <span class="arr">↗</span>
         </a>
       </div>
-
-      <div class="strip mono dim">
-        <span>FULL-STACK DEVELOPMENT &nbsp;/&nbsp; CREATIVE PROBLEM SOLVING</span>
-        <span class="sans">A little further down ↓</span>
-      </div>
     </section>
   `,
 })

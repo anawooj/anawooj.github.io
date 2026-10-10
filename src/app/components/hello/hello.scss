@@ -73,16 +73,3 @@ h1 {
     }
   }
 }
-
-.strip {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 140px;
-  padding-top: 26px;
-  border-top: 1px solid var(--line);
-
-  @media (max-width: #{$bp-mobile}) {
-    flex-direction: column;
-    gap: 8px;
-  }
-}
